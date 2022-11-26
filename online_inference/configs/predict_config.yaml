@@ -1,0 +1,4 @@
+model_path: "model/models/model.pkl"
+test_set_path: "data/processed/val_df.csv"
+predict_path: "data/predicts/my_predict.csv"
+

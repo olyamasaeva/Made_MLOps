@@ -1,0 +1,3 @@
+model_path: "model/models/model_logreg.pkl"
+test_set_path: "data/processed/val1_df.csv"
+predict_path: "data/predicts/my_predict.csv"

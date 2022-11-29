@@ -24,9 +24,8 @@ def predict_pipeline(config_path: str):
     logger.info(f"data.shape is {features.shape}")
     model  = open_model(predict_params.model_path)
     predicts = predict_model(model, features)
-    pr = pd.DataFrame({'condition': predicts})
     logger.info(f"predicted shape is {predicts.shape}")
-    save_data(pr, predict_params.predict_path)
+    save_data(predicts, predict_params.predict_path)
     return 
 
 @click.command(name="predict_pipeline")

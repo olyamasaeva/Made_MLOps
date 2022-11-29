@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import logging
 import sys
+import os
+import gdown
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
@@ -58,8 +60,11 @@ def serialize_model(model: object, output: str) -> str:
     return output
 
 @log
-def open_model(model_path: str) -> object:
+def open_model(model_path: str, from_net: bool=False) -> object:
     logger.info(f"model path is {model_path}")
+    if from_net:
+        gdown.download(model_path, os.environ.get("ONLINE_MODEL_DESTINATION"), quiet=False)
+        model_path = os.environ.get("ONLINE_MODEL_DESTINATION")
     model = pickle.load(open(model_path,'rb'))
     logger.info(f"model is equal to {model}")
     if model == None:

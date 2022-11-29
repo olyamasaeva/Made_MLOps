@@ -5,7 +5,9 @@ WORKDIR /online_interfence
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONBUFFERED 1
 ENV SKLEARN_MODEL_PATH="model/models/model.pkl"
-
+ENV ONLINE_MODEL_PATH="https://drive.google.com/file/d/144P3_g0FHmyW6QScOB0E9Hx5Z46_wkWQ"
+ENV ONLINE_MODEL_DESTINATION="online_model.pkl"
+ENV USED_MODEL="offline"
 
 # install system dependencies
 RUN apt-get update \

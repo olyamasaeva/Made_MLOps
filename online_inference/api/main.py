@@ -20,7 +20,10 @@ app.sklearn_models = None
 
 @app.on_event("startup")
 def startup_event():
-    app.sklearn_models = open_model(os.environ.get("SKLEARN_MODEL_PATH"))
+    if os.environ.get("USED_MODEL") == "online":
+        app.sklearn_models = open_model(os.environ.get("ONLINE_MODEL_PATH"), True)
+    else:
+        app.sklearn_models = open_model(os.environ.get("SKLEARN_MODEL_PATH"))
     if app.sklearn_models == None:
          raise TypeError("None appeared instead of sklearn_models to open")
 
@@ -34,7 +37,6 @@ def predict(features: List[Features]):
     predicts = predict_model(app.sklearn_models, dataframe_features)
     logger.info(f"predict values are {predicts}")
     return [Target(condition=o) for o in predicts]
-
 
 @app.post('/health',status_code=status.HTTP_200_OK)
 async def check_health():

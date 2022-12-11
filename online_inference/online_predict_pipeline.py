@@ -31,7 +31,7 @@ def predict_pipeline(config_path: str):
     save_data(predicts, predict_params.predict_path)
     return 
 
-@click.command(name="predict_pipeline")
+@click.command(name="predict_online_pipeline")
 @click.argument("config_path")
 def predict_pipeline_command(config_path: str):
     predict_pipeline(config_path)
